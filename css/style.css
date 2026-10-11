@@ -1758,6 +1758,16 @@ body::after {
     overflow-y: auto;
   }
 
+  .memory-modal,
+  .bouquet-modal,
+  .letter-modal {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0.65rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .ticket-wrapper {
     width: min(100%, 430px);
     margin: auto;
@@ -1769,6 +1779,7 @@ body::after {
     width: 100%;
     box-sizing: border-box;
     padding: 2.75rem 0.55rem 0.85rem;
+    margin: 0 auto 1rem;
     border-width: 2px;
     border-radius: 20px;
   }
@@ -1822,6 +1833,7 @@ body::after {
     width: 100%;
     box-sizing: border-box;
     padding: 3.5rem 0.35rem 1.25rem;
+    margin: 0 auto 1rem;
   }
 
   .envelope-area {
