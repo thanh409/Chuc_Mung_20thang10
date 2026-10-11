@@ -8,7 +8,10 @@
     <link rel="icon" href="./img/favicona2.png" type="image/png" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-
+  <script>
+    const GOOGLE_SHEET_URL =
+      "https://script.google.com/macros/s/AKfycbxV2R0v4Z5TbCARl9maQ74urWb6a4W2c_Sxozo3kGvgRWRnP5CymJ8PdwFA8F-4sxNx/exec";
+  </script>
   <body>
     <h1 id="line12" class="celebration-title">
       Chúc mừng ngày 20/10
@@ -525,7 +528,7 @@
         visitorName.focus();
       });
 
-      nameForm.addEventListener("submit", (event) => {
+      nameForm.addEventListener("submit", async (event) => {
         event.preventDefault();
         const name = visitorName.value.trim();
 
@@ -536,11 +539,34 @@
         }
 
         nameError.hidden = true;
-        passengerName.textContent = name;
-        nameModal.hidden = true;
-        nameModal.style.display = "none";
-        ticketModal.style.display = "flex";
-        choicePanel.style.display = "none";
+        const submitButton = document.getElementById("nameSubmit");
+        submitButton.disabled = true;
+        submitButton.textContent = "Đang lưu...";
+
+        try {
+          await fetch(GOOGLE_SHEET_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            },
+            body: JSON.stringify({ name }),
+          });
+
+          passengerName.textContent = name;
+          nameModal.hidden = true;
+          nameModal.style.display = "none";
+          ticketModal.style.display = "flex";
+          choicePanel.style.display = "none";
+        } catch (error) {
+          console.error("Không thể lưu tên vào Google Sheets:", error);
+          nameError.textContent =
+            "Không thể lưu tên lúc này. Vui lòng kiểm tra kết nối và thử lại.";
+          nameError.hidden = false;
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = "Xác nhận";
+        }
       });
 
       ticketClose.addEventListener("click", () => {
