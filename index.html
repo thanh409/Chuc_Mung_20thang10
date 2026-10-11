@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chúc mừng ngày 20/10 các bạn nữ A2</title>
+
+    <link rel="icon" href="./img/favicona2.png" type="image/png" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <h1 id="line12" class="celebration-title">
+      Chúc mừng ngày 20/10
+      <span>các bạn nữ A2</span>
+    </h1>
+
+    <div class="landing-decoration" aria-hidden="true">
+      <div class="memory-polaroid memory-polaroid-left">
+        <img src="./img/ky-niem-03.jpg" alt="" />
+        <span>Một chút thanh xuân</span>
+      </div>
+      <div class="memory-seal">
+        <img src="./img/favicona2.png" alt="" />
+        <span>A2 · 20/10</span>
+      </div>
+      <div class="memory-polaroid memory-polaroid-right">
+        <img src="./img/ky-niem-18.jpg" alt="" />
+        <span>Ký ức còn mãi</span>
+      </div>
+    </div>
+
+    <section
+      id="choicePanel"
+      class="choice-panel"
+      aria-labelledby="choiceTitle"
+    >
+      <h2 id="choiceTitle">Bạn muốn khám phá điều gì?</h2>
+      <div class="choice-list">
+        <button class="choice-button" id="letterChoice" type="button">
+          <span class="choice-icon" aria-hidden="true">✉️</span>
+          <span class="choice-label">Lời Chúc</span>
+        </button>
+        <button class="choice-button" id="videoChoice" type="button">
+          <span class="choice-icon" aria-hidden="true">🎬</span>
+          <span class="choice-label">Xem lại kỷ niệm</span>
+        </button>
+      </div>
+    </section>
+
+    <section
+      id="letterThankYou"
+      class="letter-thank-you landing-thank-you"
+      aria-label="Lời cảm ơn"
+      hidden
+    >
+      <p class="thank-you-message">
+        Cảm ơn các bạn vì đã từng là một phần thanh xuân của tụi mình
+      </p>
+      <img
+        src="./img/ban_tym.jpg"
+        alt="Hình ảnh lời cảm ơn dành cho các bạn nữ A2"
+      />
+      <p class="thank-you-signature">Thương mến từ A2 ✨</p>
+    </section>
+
+    <div
+      id="ticketModal"
+      class="ticket-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="ticketTitle"
+    >
+      <div class="ticket-wrapper">
+        <article class="ticket-card">
+          <div class="corner-ornament top-left"></div>
+          <div class="corner-ornament top-right"></div>
+          <div class="corner-ornament bottom-left"></div>
+          <div class="corner-ornament bottom-right"></div>
+
+          <div class="ticket-header">
+            <h1 id="ticketTitle" class="ticket-title">VÉ DU HÀNH KÝ ỨC</h1>
+            <h2 class="ticket-welcome">Chúc mừng bạn!</h2>
+            <p class="ticket-subtitle">Bạn nhận được tấm vé xem lại kỷ niệm</p>
+          </div>
+
+          <div class="ticket-body">
+            <div class="journey-row">
+              <div class="location-box">
+                <span class="label">ĐIỂM XUẤT PHÁT</span>
+                <span class="value highlighting">TỪ MỘT NƠI NÀO ĐÓ</span>
+              </div>
+              <div class="location-box text-right">
+                <span class="label">ĐỊA ĐIỂM ĐẾN</span>
+                <span class="value highlighting">KÝ ỨC</span>
+              </div>
+            </div>
+
+            <div class="time-row">
+              <span class="time-block">
+                <span class="label">⏳ KHỞI HÀNH</span>
+                <span class="value">05/09/2023</span>
+              </span>
+              <span class="flight-arrow" aria-hidden="true">┈┈✈︎</span>
+              <span class="time-block text-right">
+                <span class="label">ĐẾN</span>
+                <span class="value">05/09/2025</span>
+              </span>
+            </div>
+
+            <div class="passenger-row">
+              <span class="label">HÀNH KHÁCH:</span>
+              <span id="passengerName" class="value pax-name"
+                >Một thành viên A2</span
+              >
+            </div>
+          </div>
+
+          <div class="ticket-divider"></div>
+
+          <div class="ticket-footer">
+            <div class="stamp-red" aria-hidden="true">
+              <span>KÝ ỨC</span>
+              <span class="stamp-date">A2 - 20/10</span>
+            </div>
+            <div
+              class="barcode-area"
+              aria-label="Mã vé A2-20.10-THPT Tuy Phong"
+            >
+              <div class="barcode"></div>
+              <span class="serial">A2-20.10-THPT Tuy Phong</span>
+            </div>
+          </div>
+        </article>
+
+        <button id="ticketClose" class="glow-btn" type="button">
+          Mở lựa chọn ký ức
+        </button>
+      </div>
+    </div>
+
+    <div id="welcomeModal" class="modal">
+      <div class="modal-content">
+        <h2>🌸 Xin lưu ý 🌸</h2>
+        <p>
+          Dịch vụ có yêu cầu trả phí để sử dụng, bạn có chấp nhận trả phí bằng
+          tình cảm để sử dụng dịch vụ này hay không?
+        </p>
+
+        <button id="showWish">Đồng ý</button>
+        <button id="closeModal">Không</button>
+      </div>
+    </div>
+
+    <div id="nameModal" class="modal name-modal" hidden>
+      <div class="modal-content">
+        <h2>💌 Một chút thông tin</h2>
+        <p>Hãy nhập tên của bạn để in lên tấm vé ký ức nhé.</p>
+        <form id="nameForm">
+          <label class="name-label" for="visitorName">Tên của bạn</label>
+          <input
+            id="visitorName"
+            class="name-input"
+            type="text"
+            maxlength="40"
+            autocomplete="name"
+            placeholder="Nhập tên của bạn"
+            required
+          />
+          <p id="nameError" class="name-error" role="alert" hidden>
+            Vui lòng nhập tên trước khi tiếp tục.
+          </p>
+          <button id="nameSubmit" type="submit">Xác nhận</button>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="memeModal"
+      class="meme-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="memeTitle"
+    >
+      <div class="meme-card">
+        <button
+          id="memeClose"
+          class="meme-close"
+          type="button"
+          aria-label="Đóng ảnh"
+        >
+          &times;
+        </button>
+        <h2 id="memeTitle">!!LỰA CHỌN CHƯA PHÙ HỢP!!</h2>
+        <img
+          class="meme-image"
+          src="./img/PVymeme.png"
+          alt="Ảnh meme kỷ niệm"
+        />
+        <p class="meme-caption">😡Chọn lại đi, đừng để tôi nóng😡</p>
+      </div>
+    </div>
+
+    <div id="notification" class="notification" role="status">
+      <span class="sticker">🌸</span>
+      <span>Lựa chọn không phù hợp! Hãy thử lại nhé 💖</span>
+    </div>
+
+    <div
+      id="memoryModal"
+      class="memory-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="memoryTitle"
+    >
+      <div class="memory-room">
+        <button
+          id="memoryClose"
+          class="memory-close"
+          type="button"
+          aria-label="Đóng phòng kỷ niệm"
+        >
+          &times;
+        </button>
+        <aside class="collection-card flower-collection">
+          <div
+            id="flowerBasket"
+            class="collection-art flower-basket"
+            aria-hidden="true"
+          ></div>
+          <strong id="flowerCount">0</strong>
+          <span>Nhánh hoa</span>
+        </aside>
+        <main class="memory-content">
+          <p class="memory-kicker">🎞️ Chuyến tàu kỷ niệm 🎞️</p>
+          <h2 id="memoryTitle">Mỗi bức ảnh là một kỷ niệm đáng nhớ</h2>
+          <p id="memoryProgress">Kỷ niệm 1 / 20</p>
+          <div class="memory-photo-frame">
+            <img
+              id="memoryImage"
+              src="./img/Backgr.jpg"
+              alt="Kỷ niệm đang được xem"
+            />
+            <span class="photo-sparkle sparkle-one">✦</span>
+            <span class="photo-sparkle sparkle-two">✧</span>
+          </div>
+          <h3 id="memoryCaption">Một khoảnh khắc đáng nhớ của A2</h3>
+          <button id="viewMemory" class="memory-action" type="button">
+            Xem tiếp 🌷
+          </button>
+        </main>
+        <aside class="collection-card candy-collection">
+          <div
+            id="candyBasket"
+            class="collection-art candy-basket"
+            aria-hidden="true"
+          ></div>
+          <strong id="candyCount">0</strong>
+          <span>Kẹo đã nhặt</span>
+        </aside>
+      </div>
+    </div>
+
+    <div
+      id="bouquetModal"
+      class="bouquet-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="bouquetTitle"
+    >
+      <div class="bouquet-card">
+        <div class="bouquet-glow">✨ 🌸 ✨</div>
+        <div class="bouquet">
+          <div
+            id="bouquetBranches"
+            class="bouquet-branches"
+            aria-label="20 nhánh hoa đã ghép"
+          ></div>
+          <img
+            class="bouquet-final-image"
+            src="./img/final-bouquet.png"
+            alt="Giỏ hoa kỷ niệm đã hoàn thành"
+          />
+        </div>
+        <div
+          id="candyGift"
+          class="candy-gift"
+          aria-label="Giỏ kẹo đã hoàn thành"
+        >
+          <img
+            class="candy-final-image"
+            src="./img/final-candy-basket.png"
+            alt="Giỏ kẹo đã hoàn thành"
+          />
+        </div>
+        <p class="bouquet-kicker">🎉 HOÀN THÀNH HÀNH TRÌNH 🎉</p>
+        <h2 id="bouquetTitle">Bạn đã ghép đủ một bó hoa kỷ niệm!</h2>
+        <p class="bouquet-message">
+          20 bông hoa và 1 giỏ kẹo dành tặng cho những năm tháng thật đẹp của
+          A2.
+        </p>
+        <button id="bouquetClose" class="memory-action" type="button">
+          Xem lại những lựa chọn 💖
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="letterModal"
+      class="letter-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="letterTitle"
+    >
+      <button
+        id="letterClose"
+        class="letter-close"
+        type="button"
+        aria-label="Thoát chế độ đọc thư"
+      >
+        &times;
+      </button>
+      <div class="letter-scene">
+        <div class="side-flower-wrap">
+          <div id="letterFlowerBranches" class="letter-flower-branches"></div>
+          <img
+            class="side-treasure side-flower"
+            src="./img/final-bouquet.png"
+            alt="Giỏ hoa kỷ niệm"
+          />
+        </div>
+        <div class="envelope-area">
+          <p class="letter-kicker">💌 Lời chúc đến các bạn nữ A2 💌</p>
+          <div id="envelope" class="envelope">
+            <div class="envelope-back"></div>
+            <div id="letterPaper" class="letter-paper">
+              <span class="paper-fold fold-one"></span>
+              <span class="paper-fold fold-two"></span>
+              <span class="paper-fold fold-three"></span>
+              <h2 id="letterTitle">Gửi những cô gái A2 thân mến,</h2>
+              <p>
+                Đầu tiên xin được chúc các bạn một ngày 20/10 thật vui vẻ và
+                hạnh phúc. Chúc các bạn luôn có những ngày tháng rực rỡ, luôn
+                đón nhận được những điều tích cực từ cuộc sống. Chúc các bạn mãi
+                luôn vui tươi, trẻ đẹp như những năm tháng tuổi học trò. Nói
+                chung là chúc các bạn tất cả.
+              </p>
+              <p>
+                Vậy năm nay đã là năm thứ 2 chúng ta không còn đón những ngày lễ
+                này cùng nhau nữa. Dù giờ mỗi đứa một phương, nhưng mà xa mặt
+                chứ không hề cách lòng. Mình và các bạn nam A2 luôn sẽ đứng đằng
+                sau và ủng hộ con đường các bạn đang đi. Luôn chúc các bạn hạnh
+                phúc, luôn gặp được những người tử tế, làm được những điều mình
+                thích và trở thành phiên bản mà bản thân mong muốn nhất.
+              </p>
+              <p>
+                Và sau cùng, sau này mỗi đứa sẽ có những công việc, những mối
+                quan hệ và những câu chuyện riêng của mình, mong rằng khi nhìn
+                lại những năm tháng cấp 3, chúng ta vẫn sẽ nhớ về nhau bằng
+                những kỷ niệm thật đẹp. Nhớ về một A2 đã từng có những ngày
+                tháng cùng nhau học tập, cùng nhau vui đùa, cùng nhau trải qua
+                biết bao nhiêu chuyện vui buồn mà có lẽ sau này khó có thể tìm
+                lại được. Cấp 3 vui vl các bạn ơi, mấy đứa bạn đại học tuổi gì
+                🤌.
+              </p>
+              <p class="letter-signature">Thương mến,<br />Trai A2</p>
+            </div>
+            <div class="envelope-flap"></div>
+            <button id="openLetter" class="envelope-button" type="button">
+              Mở thư
+            </button>
+          </div>
+          <p class="letter-hint">Bấm vào nút tròn để mở lời chúc</p>
+          <button
+            id="letterComplete"
+            class="letter-complete"
+            type="button"
+            hidden
+          >
+            Đã đọc xong 💖
+          </button>
+        </div>
+        <div class="side-candy-wrap">
+          <div id="letterCandyParticles" class="letter-candy-particles"></div>
+          <img
+            class="side-treasure side-candy"
+            src="./img/final-candy-basket.png"
+            alt="Giỏ kẹo kỷ niệm"
+          />
+        </div>
+      </div>
+    </div>
+
+    <audio id="backgroundMusic" loop preload="auto">
+      <source src="./music/ky-niem.mp3" type="audio/mpeg" />
+      Trình duyệt của bạn không hỗ trợ phát nhạc.
+    </audio>
+    <button
+      id="musicToggle"
+      class="music-toggle"
+      type="button"
+      aria-pressed="false"
+    >
+      🔇
+    </button>
+
+    <script>
+      const modal = document.getElementById("welcomeModal");
+      const showWish = document.getElementById("showWish");
+      const nameModal = document.getElementById("nameModal");
+      const nameForm = document.getElementById("nameForm");
+      const visitorName = document.getElementById("visitorName");
+      const nameError = document.getElementById("nameError");
+      const passengerName = document.getElementById("passengerName");
+      const closeModal = document.getElementById("closeModal");
+      const memeModal = document.getElementById("memeModal");
+      const memeClose = document.getElementById("memeClose");
+      const notification = document.getElementById("notification");
+      const choicePanel = document.getElementById("choicePanel");
+      const letterChoice = document.getElementById("letterChoice");
+      const videoChoice = document.getElementById("videoChoice");
+      const ticketModal = document.getElementById("ticketModal");
+      const ticketClose = document.getElementById("ticketClose");
+      const backgroundMusic = document.getElementById("backgroundMusic");
+      const musicToggle = document.getElementById("musicToggle");
+      const memoryModal = document.getElementById("memoryModal");
+      const memoryClose = document.getElementById("memoryClose");
+      const memoryImage = document.getElementById("memoryImage");
+      const memoryProgress = document.getElementById("memoryProgress");
+      const memoryCaption = document.getElementById("memoryCaption");
+      const viewMemory = document.getElementById("viewMemory");
+      const flowerCount = document.getElementById("flowerCount");
+      const candyCount = document.getElementById("candyCount");
+      const flowerBasket = document.getElementById("flowerBasket");
+      const candyBasket = document.getElementById("candyBasket");
+      const bouquetBranches = document.getElementById("bouquetBranches");
+      const bouquetModal = document.getElementById("bouquetModal");
+      const bouquetClose = document.getElementById("bouquetClose");
+      const letterModal = document.getElementById("letterModal");
+      const envelope = document.getElementById("envelope");
+      const openLetter = document.getElementById("openLetter");
+      const letterComplete = document.getElementById("letterComplete");
+      const letterThankYou = document.getElementById("letterThankYou");
+      const letterClose = document.getElementById("letterClose");
+      const letterFlowerBranches = document.getElementById(
+        "letterFlowerBranches",
+      );
+      const letterCandyParticles = document.getElementById(
+        "letterCandyParticles",
+      );
+      let notificationTimeout;
+      let musicStarted = false;
+      let currentMemory = 1;
+      let viewedMemories = new Set();
+      const memoryCaptions = [
+        "Tấm hình đầu tiên chụp chung của lớp",
+        "Chuyến du lịch đầu tiên cùng nhau",
+        "Ngày 20/10 của năm lớp 12",
+        "Hết vị🤌",
+        "Ngày 20/10 của năm lớp 11",
+        "Này chui vô hàm cá mập",
+        "Này là ngày 19/11 năm lớp 11",
+        "Quá nhiều hoa xinhh luônnnn",
+        "Chia tay gvcn tạm thời",
+        "Tuổi học trò dịu dàng như nắng",
+        "Ngày 08/03 năm lớp 11",
+        "Ngày 20/11 cùng thầy chủ nhiệm đầu tiên lớp 11",
+        "Khi chúng ta còn ngồi cạnh nhau",
+        "Bức ảnh lưu giữ cả một thời",
+        "Những lời chúc chưa từng nói",
+        "Ăn nhậu kết thúc kì I năm 12 (hôm này nhậu rữ luôn)",
+        "Ngày tháng trôi, kỷ niệm ở lại",
+        "Cảm ơn vì đã cùng nhau đi qua",
+        "Một bó hoa dành cho thanh xuân",
+        "Điểm đến: những ký ức tuyệt đẹp",
+      ];
+      const memoryImages = Array.from(
+        { length: 20 },
+        (_, index) => `./img/ky-niem-${String(index + 1).padStart(2, "0")}.jpg`,
+      );
+
+      function startMusic() {
+        if (musicStarted) {
+          return;
+        }
+
+        backgroundMusic.muted = false;
+        backgroundMusic
+          .play()
+          .then(() => {
+            musicStarted = true;
+            musicToggle.textContent = "🔊 ";
+            musicToggle.setAttribute("aria-pressed", "true");
+          })
+          .catch(() => {
+            backgroundMusic.muted = true;
+            backgroundMusic.play().catch(() => {});
+          });
+      }
+
+      backgroundMusic.muted = true;
+      backgroundMusic.play().catch(() => {});
+
+      document.addEventListener("click", startMusic, { once: true });
+
+      musicToggle.addEventListener("click", () => {
+        if (backgroundMusic.paused) {
+          backgroundMusic.muted = false;
+          backgroundMusic.play().then(() => {
+            musicStarted = true;
+            musicToggle.textContent = "🔊";
+            musicToggle.setAttribute("aria-pressed", "true");
+          });
+        } else {
+          backgroundMusic.pause();
+          musicToggle.textContent = "🔇";
+          musicToggle.setAttribute("aria-pressed", "false");
+        }
+      });
+
+      showWish.addEventListener("click", () => {
+        modal.style.display = "none";
+        nameModal.hidden = false;
+        nameModal.style.display = "flex";
+        visitorName.focus();
+      });
+
+      nameForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = visitorName.value.trim();
+
+        if (!name) {
+          nameError.hidden = false;
+          visitorName.focus();
+          return;
+        }
+
+        nameError.hidden = true;
+        passengerName.textContent = name;
+        nameModal.hidden = true;
+        nameModal.style.display = "none";
+        ticketModal.style.display = "flex";
+        choicePanel.style.display = "none";
+      });
+
+      ticketClose.addEventListener("click", () => {
+        ticketModal.style.display = "none";
+        videoChoice.click();
+      });
+
+      closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+        memeModal.style.display = "flex";
+        clearTimeout(notificationTimeout);
+
+        notificationTimeout = setTimeout(() => {
+          memeModal.style.display = "none";
+          modal.style.display = "flex";
+        }, 4000);
+      });
+
+      memeClose.addEventListener("click", () => {
+        clearTimeout(notificationTimeout);
+        memeModal.style.display = "none";
+        modal.style.display = "flex";
+      });
+
+      function showChoiceNotification(message) {
+        clearTimeout(notificationTimeout);
+        notification.querySelector("span:last-child").textContent = message;
+        notification.style.display = "flex";
+
+        notificationTimeout = setTimeout(() => {
+          notification.style.display = "none";
+        }, 4000);
+      }
+
+      letterChoice.addEventListener("click", () => {
+        choicePanel.style.display = "none";
+        currentMemory = 1;
+        viewedMemories = new Set();
+        resetCollections();
+        prepareBouquet();
+        openLetterExperience();
+      });
+
+      videoChoice.addEventListener("click", () => {
+        choicePanel.style.display = "none";
+        memoryModal.style.display = "flex";
+        envelope.classList.remove("is-open");
+        openLetter.disabled = false;
+        openLetter.textContent = "Mở thư";
+        currentMemory = 1;
+        viewedMemories = new Set();
+        resetCollections();
+        flowerCount.textContent = "0";
+        candyCount.textContent = "0";
+        loadMemory();
+      });
+
+      function loadMemory() {
+        const imagePath = memoryImages[currentMemory - 1];
+        memoryCaption.textContent = memoryCaptions[currentMemory - 1];
+        memoryImage.src = memoryImages[currentMemory - 1];
+        memoryImage.onerror = function handleMissingMemoryImage() {
+          memoryImage.onerror = null;
+          memoryImage.src = "./img/Backgr.jpg";
+          memoryCaption.textContent = `${memoryCaptions[currentMemory - 1]} (Ảnh mẫu - hãy thêm ${imagePath})`;
+        };
+        memoryProgress.textContent = `Kỷ niệm ${currentMemory} / 20`;
+        viewMemory.textContent = viewedMemories.has(currentMemory)
+          ? "Xem lại kỷ niệm 🌷"
+          : "Xem tiếp 🌷";
+      }
+
+      function resetCollections() {
+        flowerBasket.replaceChildren();
+        candyBasket.replaceChildren();
+        bouquetBranches.replaceChildren();
+        letterFlowerBranches.replaceChildren();
+        letterCandyParticles.replaceChildren();
+      }
+
+      function addCollectedBranch(index) {
+        const branch = document.createElement("span");
+        branch.className = "collected-branch";
+        branch.textContent =
+          index % 3 === 0 ? "🌻" : index % 2 === 0 ? "🌼" : "🌸";
+        branch.style.setProperty(
+          "--branch-angle",
+          `${(index % 7) * 8 - 24}deg`,
+        );
+        flowerBasket.append(branch);
+
+        const candy = document.createElement("span");
+        candy.className = "collected-candy";
+        candy.textContent = index % 2 === 0 ? "🍬" : "🍭";
+        candyBasket.append(candy);
+      }
+
+      function prepareBouquet() {
+        letterFlowerBranches.replaceChildren();
+        letterCandyParticles.replaceChildren();
+        for (let index = 0; index < 20; index += 1) {
+          const branch = document.createElement("span");
+          branch.className = "bouquet-branch letter-branch";
+          branch.textContent =
+            index % 3 === 0 ? "🌻" : index % 2 === 0 ? "🌼" : "🌸";
+          branch.style.setProperty("--branch-index", index);
+          letterFlowerBranches.append(branch);
+
+          const candy = document.createElement("span");
+          candy.className = "letter-candy-particle";
+          candy.textContent = index % 2 === 0 ? "🍬" : "🍭";
+          candy.style.setProperty("--candy-index", index);
+          letterCandyParticles.append(candy);
+        }
+      }
+
+      viewMemory.addEventListener("click", () => {
+        if (viewedMemories.has(currentMemory)) {
+          currentMemory = currentMemory === 20 ? 1 : currentMemory + 1;
+          loadMemory();
+          return;
+        }
+
+        viewedMemories.add(currentMemory);
+        addCollectedBranch(viewedMemories.size);
+        flowerCount.textContent = viewedMemories.size;
+        candyCount.textContent = viewedMemories.size;
+
+        if (viewedMemories.size === 20) {
+          memoryModal.style.display = "none";
+          prepareBouquet();
+          openLetterExperience();
+          return;
+        }
+
+        currentMemory = currentMemory === 20 ? 1 : currentMemory + 1;
+        loadMemory();
+      });
+
+      memoryClose.addEventListener("click", () => {
+        memoryModal.style.display = "none";
+        choicePanel.style.display = "block";
+      });
+
+      bouquetClose.addEventListener("click", () => {
+        bouquetModal.style.display = "none";
+        choicePanel.style.display = "block";
+      });
+
+      openLetter.addEventListener("click", () => {
+        envelope.classList.add("is-open");
+        openLetter.textContent = "Đã mở thư 💖";
+        openLetter.disabled = true;
+        letterComplete.hidden = false;
+      });
+
+      letterComplete.addEventListener("click", () => {
+        envelope.classList.add("letter-completed");
+        letterComplete.hidden = true;
+        letterModal.style.display = "none";
+        choicePanel.style.display = "block";
+        letterThankYou.hidden = false;
+        letterThankYou.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      letterClose.addEventListener("click", () => {
+        letterModal.style.display = "none";
+        envelope.classList.remove("is-open");
+        envelope.classList.remove("letter-completed");
+        openLetter.disabled = false;
+        openLetter.textContent = "Mở thư";
+        letterComplete.hidden = true;
+        letterThankYou.hidden = true;
+        choicePanel.style.display = "block";
+        choicePanel.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      function openLetterExperience() {
+        envelope.classList.remove("is-open");
+        envelope.classList.remove("letter-completed");
+        openLetter.disabled = false;
+        openLetter.textContent = "Mở thư";
+        letterComplete.hidden = true;
+        letterThankYou.hidden = true;
+        letterModal.style.display = "flex";
+      }
+    </script>
+  </body>
+</html>
