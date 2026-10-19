@@ -470,6 +470,7 @@
       let musicStarted = false;
       let currentMemory = 1;
       let viewedMemories = new Set();
+      const GOOGLE_REQUEST_TIMEOUT = 15000;
       const memoryCaptions = [
         "Tấm hình đầu tiên chụp chung của lớp",
         "Chuyến du lịch đầu tiên cùng nhau",
@@ -496,6 +497,28 @@
         { length: 20 },
         (_, index) => `./img/ky-niem-${String(index + 1).padStart(2, "0")}.jpg`,
       );
+
+      async function postToGoogleSheets(payload) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(
+          () => controller.abort(),
+          GOOGLE_REQUEST_TIMEOUT,
+        );
+
+        try {
+          return await fetch(GOOGLE_SHEET_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            },
+            body: JSON.stringify(payload),
+            signal: controller.signal,
+          });
+        } finally {
+          clearTimeout(timeoutId);
+        }
+      }
 
       function startMusic() {
         if (musicStarted) {
@@ -560,14 +583,7 @@
         submitButton.textContent = "Đang lưu...";
 
         try {
-          await fetch(GOOGLE_SHEET_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-              "Content-Type": "text/plain;charset=utf-8",
-            },
-            body: JSON.stringify({ name }),
-          });
+          await postToGoogleSheets({ name });
 
           passengerName.textContent = name;
           nameModal.hidden = true;
@@ -577,7 +593,9 @@
         } catch (error) {
           console.error("Không thể lưu tên vào Google Sheets:", error);
           nameError.textContent =
-            "Không thể lưu tên lúc này. Vui lòng kiểm tra kết nối và thử lại.";
+            error.name === "AbortError"
+              ? "Kết nối Google Sheets đang phản hồi chậm. Vui lòng thử lại."
+              : "Không thể lưu tên lúc này. Vui lòng kiểm tra kết nối và thử lại.";
           nameError.hidden = false;
         } finally {
           submitButton.disabled = false;
@@ -588,8 +606,7 @@
       submitMessageBtn.addEventListener("click", async () => {
         const message = userMessage.value.trim();
         const name = (
-          localStorage.getItem("userName") ||
-          visitorName.value
+          localStorage.getItem("userName") || visitorName.value
         ).trim();
         const timestamp = new Date().toISOString();
 
@@ -599,17 +616,10 @@
         }
 
         submitMessageBtn.disabled = true;
-        submitMessageBtn.textContent = "Đang gửi...";
+        submitMessageBtn.textContent = "Đang cập nhật...";
 
         try {
-          await fetch(GOOGLE_SHEET_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-              "Content-Type": "text/plain;charset=utf-8",
-            },
-            body: JSON.stringify({ name, timestamp, message }),
-          });
+          await postToGoogleSheets({ name, timestamp, message });
 
           userMessage.value = "";
           alert("Cảm ơn bạn đã gửi lời nhắn đến lớp A2!");
