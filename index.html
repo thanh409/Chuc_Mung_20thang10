@@ -580,7 +580,7 @@
         nameError.hidden = true;
         const submitButton = document.getElementById("nameSubmit");
         submitButton.disabled = true;
-        submitButton.textContent = "Đang lưu...";
+        submitButton.textContent = "Đang cập nhật...";
 
         try {
           await postToGoogleSheets({ name });
