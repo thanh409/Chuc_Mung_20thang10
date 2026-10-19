@@ -20,6 +20,7 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
   background-image: url(../img/Backgr.jpg);
   background-size: cover;
   background-position: center;
@@ -1813,6 +1814,8 @@ body::after {
 
 @media (max-width: 600px) {
   body {
+    min-height: 100vh;
+    min-height: 100svh;
     min-height: 100dvh;
   }
 
@@ -1880,6 +1883,7 @@ body::after {
 
   .memory-photo-frame img {
     height: auto;
+    max-height: 46vh;
     max-height: 46dvh;
     object-fit: contain;
   }
@@ -1936,11 +1940,13 @@ body::after {
 
   .envelope {
     width: min(100%, 430px);
+    height: min(680px, calc(100vh - 2rem));
     height: min(680px, calc(100dvh - 2rem));
   }
 
   .letter-paper {
     width: calc(100% - 1rem);
+    height: min(600px, calc(100vh - 8rem));
     height: min(600px, calc(100dvh - 8rem));
     padding: 2rem 0.9rem 1rem;
     background-size: 100% 20px;
