@@ -67,6 +67,18 @@
       <p class="thank-you-signature">Thương mến từ A2 ✨</p>
     </section>
 
+    <div id="message-section" hidden>
+      <p class="message-prompt">
+        Nếu bây giờ được nói một điều với cả lớp, thì bạn sẽ nói điều gì ?
+      </p>
+      <textarea
+        id="userMessage"
+        rows="4"
+        placeholder="Nhập lời nhắn của bạn vào đây..."
+      ></textarea>
+      <button id="submitMessageBtn" type="button">Gửi lời nhắn</button>
+    </div>
+
     <div
       id="ticketModal"
       class="ticket-modal"
@@ -444,6 +456,9 @@
       const openLetter = document.getElementById("openLetter");
       const letterComplete = document.getElementById("letterComplete");
       const letterThankYou = document.getElementById("letterThankYou");
+      const messageSection = document.getElementById("message-section");
+      const userMessage = document.getElementById("userMessage");
+      const submitMessageBtn = document.getElementById("submitMessageBtn");
       const letterClose = document.getElementById("letterClose");
       const letterFlowerBranches = document.getElementById(
         "letterFlowerBranches",
@@ -566,6 +581,37 @@
         } finally {
           submitButton.disabled = false;
           submitButton.textContent = "Xác nhận";
+        }
+      });
+
+      submitMessageBtn.addEventListener("click", async () => {
+        const message = userMessage.value.trim();
+        const name = visitorName.value.trim();
+        const timestamp = new Date().toISOString();
+
+        submitMessageBtn.disabled = true;
+        submitMessageBtn.textContent = "Đang gửi...";
+
+        try {
+          await fetch(GOOGLE_SHEET_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            },
+            body: JSON.stringify({ name, timestamp, message }),
+          });
+
+          userMessage.value = "";
+          alert("Cảm ơn bạn đã gửi lời nhắn đến lớp A2!");
+        } catch (error) {
+          console.error("Không thể lưu lời nhắn vào Google Sheets:", error);
+          alert(
+            "Không thể gửi lời nhắn lúc này. Vui lòng kiểm tra kết nối và thử lại.",
+          );
+        } finally {
+          submitMessageBtn.disabled = false;
+          submitMessageBtn.textContent = "Gửi lời nhắn";
         }
       });
 
@@ -729,6 +775,7 @@
         letterModal.style.display = "none";
         choicePanel.style.display = "block";
         letterThankYou.hidden = false;
+        messageSection.hidden = false;
         letterThankYou.scrollIntoView({ behavior: "smooth", block: "center" });
       });
 
@@ -740,6 +787,7 @@
         openLetter.textContent = "Mở thư";
         letterComplete.hidden = true;
         letterThankYou.hidden = true;
+        messageSection.hidden = true;
         choicePanel.style.display = "block";
         choicePanel.scrollIntoView({ behavior: "smooth", block: "center" });
       });
@@ -751,6 +799,7 @@
         openLetter.textContent = "Mở thư";
         letterComplete.hidden = true;
         letterThankYou.hidden = true;
+        messageSection.hidden = true;
         letterModal.style.display = "flex";
       }
     </script>
