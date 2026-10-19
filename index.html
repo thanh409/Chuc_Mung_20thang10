@@ -553,6 +553,7 @@
           return;
         }
 
+        localStorage.setItem("userName", name);
         nameError.hidden = true;
         const submitButton = document.getElementById("nameSubmit");
         submitButton.disabled = true;
@@ -586,8 +587,16 @@
 
       submitMessageBtn.addEventListener("click", async () => {
         const message = userMessage.value.trim();
-        const name = visitorName.value.trim();
+        const name = (
+          localStorage.getItem("userName") ||
+          visitorName.value
+        ).trim();
         const timestamp = new Date().toISOString();
+
+        if (!name) {
+          alert("Vui lòng nhập tên trước khi gửi lời nhắn.");
+          return;
+        }
 
         submitMessageBtn.disabled = true;
         submitMessageBtn.textContent = "Đang gửi...";
